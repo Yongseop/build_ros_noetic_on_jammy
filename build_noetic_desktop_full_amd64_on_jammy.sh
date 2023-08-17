@@ -34,9 +34,10 @@ sed -i -e s/"c++14"/"c++17"/g ./src/perception_pcl/pcl_ros/CMakeLists.txt
 sed -i -e s/"CMAKE_CXX_STANDARD 11"/"CMAKE_CXX_STANDARD 17"/g ./src/laser_filters/CMakeLists.txt 
 
 
-rm -rf ./src/rosconsole
+rm -rf ./src/rosconsole ./src/rqt_bag
 cd src
-git clone https://github.com/tatsuyai713/rosconsole
+git clone https://github.com/Yongseop/rosconsole
+git clone -b noetic-patch https://github.com/Yongseop/rqt_bag
 cd ..
 
 ./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release
