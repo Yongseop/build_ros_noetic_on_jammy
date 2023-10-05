@@ -1,0 +1,16 @@
+#!/bin/bash
+
+rosinstall_generator desktop_full --rosdistro noetic --deps --tar > noetic-desktop-full-new.rosinstall
+diff -u noetic-desktop-full.rosinstall noetic-desktop-full-new.rosinstall > .result
+
+if [ $(stat -c %s ".result") -gt 0 ]; then
+	cat .result
+	printf "\n[ROS Noetic] can be updated.\n"
+	printf "Please refer to https://wiki.ros.org/noetic/Installation/Source and https://github.com/Yongseop/build_ros_noetic_on_jammy to update.\n"
+
+	rm .result
+else
+	echo "[ROS Noetic] seems to be up-to-date."
+	rm noetic-desktop-full-new.rosinstall
+	rm .result
+fi
